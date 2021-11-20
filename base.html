@@ -30,7 +30,30 @@
 <body>
     <div id="wrapper">
         <div id="map" class="mazemap"></div>
-        <div id="form" style="display: none; position:relative; background-color:#fff">
+        <div id="myModal" class="modal" style="display: none; position: relative;">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <button id="close">Close</button>
+                <form>
+                    <ul>
+                        <li>
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name">
+                        </li>
+                        <li>
+                            <label for="start_time">E-mail:</label>
+                            <input type="text" id="start_time" name="start_time">
+                        </li>
+                        <li>
+                            <label for="end_time">Message:</label>
+                            <textarea text="text" id="end_time" name="end_time"></textarea>
+                        </li>
+                        <input type="submit" value="Request Availability">
+                    </ul>
+                </form>
+            </div>
+        </div>
+        <!-- <div id="form" style="display: none; position:relative; background-color:#fff">
             <form>
                 <ul>
                     <li>
@@ -48,8 +71,14 @@
                     <input type="submit" value="Request Availability">
                 </ul>
             </form>
-        </div>
+        </div> -->
         <script>
+            var modal = document.getElementById("myModal");
+            var btn = document.getElementById("close");
+            
+            btn.onclick = function() {
+                modal.style.display = "none";
+            }
     
             // Just the same way to initialize as always...
             map = new Mazemap.Map({
@@ -122,7 +151,6 @@
     
             map.on('load', function(){
     
-                let click = 0;
                 map.setCenter([-73.56795092623447, 45.503502511197446 ]);
                 map.addLayer({
                     id: 'custom-polygon-layer',
@@ -136,19 +164,18 @@
                         "fill-outline-color": "red"
                     }
                 });
+
                 
                 map.layerEventHandler.on('click', null, () => {
-                    click++;
-                    document.getElementById('form').style.display = "none";
+                    modal.style.display = "none";
                 })
     
                 map.layerEventHandler.on('click', 'custom-polygon-layer', (e, features) => {
-                    click++;
+                    
                     console.log('@@@ clicked custom-polygon-layer features: ', features);
                     var topFeature = features[0];
                     console.log("you clicked feature named: " + topFeature.properties.name);
-                    if(click % 2 != 0)
-                        document.getElementById('form').style.display = "block";
+                    document.getElementById("myModal").style.display = "block";
                 });
     
                 map.on('zlevel', redrawPolygons);
