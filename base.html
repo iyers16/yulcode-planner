@@ -34,20 +34,20 @@
             <ul>
                 <li>
                   <label for="name">Name:</label>
-                  <input type="text" id="name" name="user_name">
+                  <input type="text" id="name" name="name">
                 </li>
                 <li>
-                  <label for="mail">E-mail:</label>
-                  <input type="email" id="mail" name="user_email">
+                  <label for="start_time">E-mail:</label>
+                  <input type="text" id="start_time" name="start_time">
                 </li>
                 <li>
-                  <label for="msg">Message:</label>
-                  <textarea id="msg" name="user_message"></textarea>
+                  <label for="end_time">Message:</label>
+                  <textarea text="text" id="end_time" name="end_time"></textarea>
                 </li>
+                <input type="submit" value="Request Availability">
             </ul>
         </form>
     </div>
-    <!-- <div id="events">Click the yellow polygon...and try changing the floor level</div> -->
     <script>
 
         // Just the same way to initialize as always...
@@ -120,6 +120,8 @@
         ];
 
         map.on('load', function(){
+
+            let click = 0;
             map.setCenter([-73.56795092623447, 45.503502511197446 ]);
             map.addLayer({
                 id: 'custom-polygon-layer',
@@ -133,11 +135,19 @@
                     "fill-outline-color": "red"
                 }
             });
+            
+            map.layerEventHandler.on('click', null, () => {
+                click++;
+                document.getElementById('form').style.display = "none";
+            })
+
             map.layerEventHandler.on('click', 'custom-polygon-layer', (e, features) => {
+                click++;
                 console.log('@@@ clicked custom-polygon-layer features: ', features);
                 var topFeature = features[0];
-                //alert("you clicked feature named: " + topFeature.properties.name);
-                document.getElementById('form').style.display = "block";
+                console.log("you clicked feature named: " + topFeature.properties.name);
+                if(click % 2 != 0)
+                    document.getElementById('form').style.display = "block";
             });
 
             map.on('zlevel', redrawPolygons);
