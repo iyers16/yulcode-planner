@@ -46,8 +46,9 @@
         var myMap = new Mazemap.Map({
             container: 'map',
             campuses: 128,
-            center: {lng: 151.77122265375397, lat: -32.927356591291506},
             zoom: 19,
+            //center: {lng: 151.77122265375397, lat: -32.927356591291506}, 45.503502511197446, -73.56795092623447
+            center: {lat: 45.503502511197446, lng: -73.56795092623447},
             zLevel: 1,
             scrollZoom: true,
             doubleClickZoom: false,
@@ -68,7 +69,8 @@
             } );
 
             // Trigger a manual 'click' on this lngLat just to highlight something initially
-            onMapClick({lngLat: {lng: 151.77132658935858, lat: -32.927328449531224}});
+            //onMapClick({lngLat: {lng: 151.77132658935858, lat: -32.927328449531224}});
+            onMapClick({lngLat: {lat: 45.503502511197446, lng: -73.56795092623447}});
         });
 
         // define a global
