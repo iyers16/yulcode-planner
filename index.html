@@ -57,6 +57,7 @@
 
         myMap.on('load', function(){
 
+            //myMap.setCenter([45.60120, -73.62874]);
             myMap.on('click', onMapClick);
 
             // Initialize a Highlighter for POIs
@@ -67,6 +68,19 @@
                 outlineColor: Mazemap.Util.Colors.MazeColors.MazeBlue, // optional
                 fillColor: Mazemap.Util.Colors.MazeColors.MazeBlue  // optional
             } );
+
+            map.addLayer({
+                id: 'custom-polygon-layer',
+                type: 'fill',
+                source: {
+                    type: 'geojson',
+                    data: null,
+                },
+                paint: {
+                    'fill-color': '#fc0',
+                    'fill-opacity': 0.4
+                }
+            }),
 
             // Trigger a manual 'click' on this lngLat just to highlight something initially
             //onMapClick({lngLat: {lng: 151.77132658935858, lat: -32.927328449531224}});
