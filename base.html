@@ -29,7 +29,25 @@
 </head>
 <body>
     <div id="map" class="mazemap"></div>
-    <div id="events">Click the yellow polygon...and try changing the floor level</div>
+    <div id="form" style="display: none; position:relative; background-color:#fff">
+        <form>
+            <ul>
+                <li>
+                  <label for="name">Name:</label>
+                  <input type="text" id="name" name="user_name">
+                </li>
+                <li>
+                  <label for="mail">E-mail:</label>
+                  <input type="email" id="mail" name="user_email">
+                </li>
+                <li>
+                  <label for="msg">Message:</label>
+                  <textarea id="msg" name="user_message"></textarea>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <!-- <div id="events">Click the yellow polygon...and try changing the floor level</div> -->
     <script>
 
         // Just the same way to initialize as always...
@@ -118,7 +136,8 @@
             map.layerEventHandler.on('click', 'custom-polygon-layer', (e, features) => {
                 console.log('@@@ clicked custom-polygon-layer features: ', features);
                 var topFeature = features[0];
-                alert("you clicked feature named: " + topFeature.properties.name);
+                //alert("you clicked feature named: " + topFeature.properties.name);
+                document.getElementById('form').style.display = "block";
             });
 
             map.on('zlevel', redrawPolygons);
