@@ -47,16 +47,21 @@
         "touchZoomRotate": true
         });
 
+        const basicVertexX1 = -73.56795;
+        const basicVertexY1 = 45.50350;
+        const basicVertexX2 = basicVertexX1 + 0.00003;
+        const basicVertexY2 = basicVertexY1 + 0.00003;
+        //format in {Lat, Long} == {X, Y}
         var CUSTOM_FEATURES = [
             {
                 type: "Feature",
-                properties: { zLevel: 1, name: 'Yellow Box' },
+                properties: { zLevel: 1, name: 'Desk A' },
                 geometry: {
                     type: "Polygon",
-                    coordinates: [ [  [-73.56795,45.50350],
-                                        [-73.56795,45.50351],
-                                        [-73.56794,45.50351],
-                                        [-73.56794,45.50350] ] ]
+                    coordinates: [ [[basicVertexX1, basicVertexY1],
+                                    [basicVertexX1, basicVertexY2],
+                                    [basicVertexX2, basicVertexY2],
+                                    [basicVertexX2, basicVertexY1] ] ]
                                     // [12.523013,55.787037],
                                     // [12.523118,55.787017],
                                     // [12.523132,55.787038], [12.523030,55.787066] ] ]
@@ -67,6 +72,32 @@
                     // coord 1: 0.000017, 0.000029
 
                 }
+            },
+            {
+                type: "Feature",
+                properties: { zLevel: 1, name: 'Desk B' },
+                geometry: {
+                    type: "Polygon",
+                    coordinates: [ [[basicVertexX1 - 0.00005, basicVertexY1 - 0.00005],
+                                    [basicVertexX1 - 0.00005, basicVertexY2 - 0.00005],
+                                    [basicVertexX2 - 0.00005, basicVertexY2 - 0.00005],
+                                    [basicVertexX2 - 0.00005, basicVertexY1 - 0.00005] ] ]
+
+                }
+
+            },
+            {
+                type: "Feature",
+                properties: { zLevel: 1, name: 'Desk C' },
+                geometry: {
+                    type: "Polygon",
+                    coordinates: [ [[basicVertexX1 -  0.00010, basicVertexY1 -  0.00010],
+                                    [basicVertexX1 -  0.00010, basicVertexY2 -  0.00010],
+                                    [basicVertexX2 -  0.00010, basicVertexY2 -  0.00010],
+                                    [basicVertexX2 -  0.00010, basicVertexY1 -  0.00010] ] ]
+
+                }
+
             }
         ];
 
@@ -84,7 +115,6 @@
                     "fill-outline-color": "red"
                 }
             });
-
             map.layerEventHandler.on('click', 'custom-polygon-layer', (e, features) => {
                 console.log('@@@ clicked custom-polygon-layer features: ', features);
                 var topFeature = features[0];
