@@ -63,12 +63,6 @@ body {
   font-weight: 900;
   margin: 50px 40px 40px;
 }
-.eula {
-  color: #999;
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 40px;
-}
 .right {
   background: #474A59;
   box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
@@ -87,6 +81,8 @@ body {
 svg {
   position: absolute;
   width: 320px;
+  background: #474A59;
+  box-shadow: box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
 }
 path {
   fill: none;
