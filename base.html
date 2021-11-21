@@ -42,9 +42,9 @@
                             <div class="form">
                                 <label for="email">Email</label>
                                 <input type="email" id="email">
-                                <label for="password">Requested Date</label>
-                                <input type="date" id="password">
-                                <input type="submit" id="submit" value="Submit">
+                                <label for="date">Requested Date</label>
+                                <input type="date" id="date">
+                                <input type="submit" id="submit" value="Submit" onclick="requestDate()">
                             </div>
                         </div>
                     </div>
@@ -57,8 +57,18 @@
             
             btn.onclick = function() {
                 modal.style.display = "none";
+                
             }
-    
+            let click = 0;
+            function requestDate() {
+                click++;
+                if(click % 2 !=0 ) {
+                    alert("Desk reserved! successfully!")
+                }
+                else {
+                    alert("Already taken!")
+                }
+            }
             // Just the same way to initialize as always...
             map = new Mazemap.Map({
             "container": "map",
@@ -139,13 +149,18 @@
                 map.layerEventHandler.on('click', null, () => {
                     modal.style.display = "none";
                 })
-    
                 map.layerEventHandler.on('click', 'custom-polygon-layer', (e, features) => {
                     
+
                     console.log('@@@ clicked custom-polygon-layer features: ', features);
                     var topFeature = features[0];
                     console.log("you clicked feature named: " + topFeature.properties.name);
+                    console.log(topFeature.layer.paint["fill-color"]);
+                    topFeature.layer.paint["fill-color"] = "rgba(255, 255, 255, 1)";
+                    
+                    //topFeature.
                     document.getElementById("myModal").style.display = "block";
+                    
                 });
     
                 map.on('zlevel', redrawPolygons);
