@@ -2,21 +2,29 @@
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("close");
 
+
 btn.onclick = function() {
     modal.style.display = "none";
-    
 }
-let click = 0;
+
+
 function requestDate() {
-    click++;
-    if(click % 2 !=0 ) {
-        alert("Desk reserved! successfully!")
-    }
-    else {
-        alert("Already taken!")
-    }
+    //Format used in code : dd/mm/yyyy
+    let [userY, userM, userD] = $('#date').val().split('-');
+    let today = new Date();
+
+    var todayD = String(today.getDate());
+    var todayM = String(today.getMonth());
+    var todayY = String(today.getFullYear());
+
+    var todayFormattedDate = todayD.concat(todayM.concat(todayY));
+    var userFormattedDate = userD.concat(userM.concat(userY));
+    
+    //Tests in console
+    console.log(todayFormattedDate);
+    console.log(userFormattedDate);
 }
-// Just the same way to initialize as always...
+
 map = new Mazemap.Map({
 "container": "map",
 "campuses": 89,
@@ -103,9 +111,6 @@ map.on('load', function(){
         var topFeature = features[0];
         console.log("you clicked feature named: " + topFeature.properties.name);
         console.log(topFeature.layer.paint["fill-color"]);
-        topFeature.layer.paint["fill-color"] = "rgba(255, 255, 255, 1)";
-        
-        //topFeature.
         document.getElementById("myModal").style.display = "block";
         
     });
