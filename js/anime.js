@@ -1311,8 +1311,6 @@ anime.random = function (min, max) { return Math.floor(Math.random() * (max - mi
 
 //module.exports = anime;
 
-//import ani;
-
 var current = null;
 document.querySelector('#email').addEventListener('focus', function(e) {
   if (current) current.pause();
@@ -1330,7 +1328,7 @@ document.querySelector('#email').addEventListener('focus', function(e) {
     }
   });
 });
-document.querySelector('#password').addEventListener('focus', function(e) {
+document.querySelector('#date').addEventListener('focus', function(e) {
   if (current) current.pause();
   current = anime({
     targets: 'path',
