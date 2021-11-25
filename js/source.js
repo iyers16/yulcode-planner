@@ -11,22 +11,30 @@ btn.onclick = function() {
 
 function requestDate() {
     //Format used in code : dd/mm/yyyy
+    let userEmail = $('#email').val();
     let [userY, userM, userD] = $('#date').val().split('-');
     let today = new Date();
 
     var todayD = String(today.getDate());
-    var todayM = String(today.getMonth());
+    var todayM = String(today.getMonth() + 1);
     var todayY = String(today.getFullYear());
 
     var todayFormattedDate = todayD.concat(todayM.concat(todayY));
     var userFormattedDate = userD.concat(userM.concat(userY));
     
     //Tests in console
+    console.log(userEmail);
     console.log(todayFormattedDate);
     console.log(userFormattedDate);
-
     var t = document.createElement('div');
-    t.innerHTML = `Today is: ${todayFormattedDate} and you wanted to reserve ${userFormattedDate}`;
+    
+    if(todayFormattedDate === userFormattedDate) {
+        t.innerHTML = `The day you have chosen is today`;
+    } else {
+        t.innerHTML = `Today is: ${todayFormattedDate} and you wanted to reserve ${userFormattedDate}`;
+    }
+
+    
     allocDiv.appendChild(t);
 
 
