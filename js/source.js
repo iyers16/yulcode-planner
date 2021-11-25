@@ -1,12 +1,13 @@
 
-var modal = document.getElementById("myModal");
-var btn = document.getElementById("close");
+const modal = document.getElementById("myModal");
+const btn = document.getElementById("close");
+const bttn = document.querySelector('button');
+const allocDiv = document.getElementById("reservations");
 
 
 btn.onclick = function() {
     modal.style.display = "none";
 }
-
 
 function requestDate() {
     //Format used in code : dd/mm/yyyy
@@ -23,6 +24,14 @@ function requestDate() {
     //Tests in console
     console.log(todayFormattedDate);
     console.log(userFormattedDate);
+
+    var t = document.createElement('div');
+    t.innerHTML = `Today is: ${todayFormattedDate} and you wanted to reserve ${userFormattedDate}`;
+    allocDiv.appendChild(t);
+
+
+    modal.style.display = "none";
+
 }
 
 map = new Mazemap.Map({

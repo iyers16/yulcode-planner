@@ -3,17 +3,20 @@
     <meta name="viewport" id="vp" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
     <meta charset="utf-8" />
     <script type="module" src="js/anime.js"></script>
-
     <link rel='stylesheet' href="css/style.css"/>
-    <script type="webpack"></script>
-    <!-- <link rel="stylesheet" href="https://api.mazemap.com/js/v2.0.63/mazemap.min.css"> -->
+    
+    <!-- made native for dev purposes -->
     <link rel="stylesheet" href="css/mazemapstyle.css">
+    <!-- <link rel="stylesheet" href="https://api.mazemap.com/js/v2.0.63/mazemap.min.css"> -->
+    <!-- made native for dev purposes -->
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type='text/javascript' src='https://api.mazemap.com/js/v2.0.63/mazemap.min.js'></script>
 </head>
 <body>
+    
     <div id="wrapper">
-        <div id="map" class="mazemap"></div>
+        <div id="map" class="mazemap" style="max-width: 80%; float:left;"></div>
         <div id="myModal" class="modal" style="display: none; position: relative;">
             <div class="modal-content">
                 <button id="close" style="position: relative;">Close</button>
@@ -54,6 +57,10 @@
                   </div>
             </div>
         </div>
-        <script src="js/source.js"></script>
+        
+        <div id="reservations" style="max-width: 20%; float:right;">
+            <!-- <div id="slot"></div> -->
+        </div>
     </div>
+    <script src="js/source.js"></script>
 </body>
