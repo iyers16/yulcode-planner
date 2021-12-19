@@ -3,6 +3,10 @@ const modal = document.getElementById("myModal");
 const btn = document.getElementById("close");
 const bttn = document.querySelector('button');
 const allocDiv = document.getElementById("reservations");
+const separatorA = "****************************";
+const separatorH = "----------------------------";
+
+var takenDates = [];
 
 
 btn.onclick = function() {
@@ -13,6 +17,7 @@ function requestDate() {
     //Format used in code : dd/mm/yyyy
     let userEmail = $('#email').val();
     let [userY, userM, userD] = $('#date').val().split('-');
+    var userDate = $('#date').val();
     let today = new Date();
 
     var todayD = String(today.getDate());
@@ -28,18 +33,23 @@ function requestDate() {
     console.log(userFormattedDate);
     var t = document.createElement('div');
     
-    if(todayFormattedDate === userFormattedDate) {
-        t.innerHTML = `The day you have chosen is today`;
-    } else {
-        t.innerHTML = `Today is: ${todayFormattedDate} and you wanted to reserve ${userFormattedDate}`;
-    }
+    // if(todayFormattedDate === userFormattedDate) {
+    //     t.innerHTML = `The day you have chosen is today`;
+    // } else {
+    //     t.innerHTML = `<br><br>User: ${userEmail} <br>Today is: <br>${todayFormattedDate} <br>Reservation requested date: <br>${userFormattedDate}`;
+    // }
 
     
-    allocDiv.appendChild(t);
+    if(!(takenDates.includes(userFormattedDate))) {
+        t.innerHTML = `<br><br>${separatorA}<br>User:<br>${userEmail}<br>${separatorH}<br>Reservation confirmed for:<br>${userDate}<br>${separatorA}`;
+        takenDates.push(userFormattedDate);
+        allocDiv.appendChild(t);
+        modal.style.display = "none";
+        // document.getElementById('form').reset();
 
-
-    modal.style.display = "none";
-
+    } else {
+        alert("Date already reserved\nPlease choose another date!");
+    }
 }
 
 map = new Mazemap.Map({
